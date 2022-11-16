@@ -1,4 +1,4 @@
-@import url('https://flonts.googleapis.com/css?family=Montserrat:500');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500');
 
 
 body {
@@ -58,9 +58,6 @@ header {
 }
 
 #tile {
-  background-size: calc(90%) calc(90%);
-  background-repeat: no-repeat;
-  background-position: center;
   cursor: pointer;
   position: relative;
 }
@@ -75,10 +72,16 @@ header {
 
 .start {
   background-image: url(src/start.svg);
+  background-size: calc(90%) calc(90%);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .target {
   background-image: url(src/target.svg);
+  background-size: calc(90%) calc(90%);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .wall {

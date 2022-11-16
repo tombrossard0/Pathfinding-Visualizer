@@ -1,5 +1,8 @@
 const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
 
+let start_dragged = false;
+let target_dragged = false;
+
 let columns = Math.floor(document.body.clientWidth / 50),
     rows = Math.floor(document.body.clientHeight / 50);
 
@@ -8,9 +11,51 @@ const wrapper = document.getElementById("tiles");
 const createTile = index => {
     const tile = document.createElement("div");
 
-    tile.onclick = function() {
+    tile.onmousedown = function() {
         if (!tile.classList.contains("start") && !tile.classList.contains("target"))
             tile.classList.toggle("wall");
+
+        if (tile.classList.contains("start"))
+        {
+            start_dragged = true;
+        }
+        else if (tile.classList.contains("target"))
+        {
+            target_dragged = true;
+        }
+    }
+
+    tile.onmouseenter = function() {
+        if (start_dragged && !tile.classList.contains("target") && !tile.classList.contains("wall"))
+        {
+            tile.classList.toggle("start");
+        }
+        else if (target_dragged && !tile.classList.contains("start") && !tile.classList.contains("wall"))
+        {
+            tile.classList.toggle("target");
+        }
+    }
+
+    tile.onmouseleave = function() {
+        if (start_dragged && !tile.classList.contains("target") && !tile.classList.contains("wall"))
+        {
+            tile.classList.toggle("start");
+        }
+        else if (target_dragged && !tile.classList.contains("start") && !tile.classList.contains("wall"))
+        {
+            tile.classList.toggle("target");
+        }
+    }
+
+    tile.onmouseup = function() {
+        if (start_dragged && !tile.classList.contains("target") && !tile.classList.contains("wall"))
+        {
+            start_dragged = false;
+        } 
+        else if (target_dragged && !tile.classList.contains("start") && !tile.classList.contains("wall"))
+        {
+            target_dragged = false;
+        }
     }
 
     tile.style.setProperty("--x", Math.floor((index) % columns));
@@ -57,3 +102,7 @@ const get_tile = (x, y) => {
 window.onresize = () => createGrid();
 
 createGrid();
+
+function Run() {
+    console.log("Run!");
+}
