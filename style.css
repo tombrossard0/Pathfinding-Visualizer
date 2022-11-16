@@ -1,0 +1,86 @@
+@import url('https://flonts.googleapis.com/css?family=Montserrat:500');
+
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  margin: 0px;
+  font-family: "Montserrat", sans-serif;
+}
+
+h1 {
+  color: #edf0f1;
+}
+
+li, a, button {
+  font-weight: 500;
+  font-size: 16px;
+  color: #edf0f1;
+  text-decoration: none;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 1%;
+  background-color: #2c2c2c;
+  height: 5vh;
+}
+
+.settings {
+  list-style: none;
+}
+
+.settings li {
+  display: inline-block;
+  padding: 0px 20px;
+}
+
+.settings li a {
+  transition: all 0.3s ease 0s;
+}
+
+.settings li a:hover {
+  color: #0088a9;
+}
+
+#tiles {
+  height: 91.5vh;
+  width: 99vw;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  padding-top: 0.75vh;
+  padding-bottom: 0.75vh;
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  grid-template-rows: repeat(var(--rows), 1fr);
+}
+
+#tile {
+  background-size: calc(90%) calc(90%);
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  position: relative;
+}
+  
+.white {
+  background-color: rgb(255, 255, 255);
+}
+
+.gray {
+  background-color: rgb(201, 201, 201);
+}
+
+.start {
+  background-image: url(src/start.svg);
+}
+
+.target {
+  background-image: url(src/target.svg);
+}
+
+.wall {
+  background-color: rgb(20, 20, 20);
+}
