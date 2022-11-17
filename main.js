@@ -125,7 +125,26 @@ function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
-const maze_not_finished = () => {
+function maze_not_finished () {
+    var first = -1;
+
+    for (var i = 0; i < columns; i++)
+    {
+        for (var j = 0; j < rows; j++)
+        {
+            var tile = get_tile(i,j);
+
+            if (first == -1 && tile.style.getPropertyValue("--num") != -1)
+                first = tile.style.getPropertyValue("--num");
+
+            if (first != tile.style.getPropertyValue("--num") && tile.style.getPropertyValue("--num") != -1)
+            {
+                console.log("TEST : " + tile.style.getPropertyValue("--num").toString() + " | " + first.toString());
+                return 1;
+            }
+        }
+    }
+
     return 0;
 }
 
@@ -163,20 +182,20 @@ async function GenerateMaze() {
     Array.from(document.getElementsByClassName("tile")).forEach((tile) => {
        if (!tile.classList.contains("wall"))
        {
-            tile.style.setProperty("--num", toColor(index));
+            tile.style.setProperty("--num", index);
             index++;
        }
     });
 
-    while (maze_not_finished)
+    while (maze_not_finished() == 1)
     {
         var x = clamp(Math.floor(Math.random() * columns-2)+1, 1, columns-1);
         var y;
         
         if (x % 2 == 0)
-        y = clamp(Math.floor(Math.random() * (columns-1)/2) * 2 + 1, 1, rows-2);
+            y = clamp(Math.floor(Math.random() * (rows-1)/2) * 2 + 1, 1, rows-2);
         else
-            y = clamp(Math.floor(Math.random() * (columns-2)/2) * 2 + 2, 1, rows-2);
+            y = clamp(Math.floor(Math.random() * (rows-2)/2) * 2 + 2, 1, rows-2);
         
         var wall = get_tile(x, y);
         
@@ -194,8 +213,6 @@ async function GenerateMaze() {
             c2 = get_tile(x+1, y).style.getPropertyValue("--num");
         }
         
-        console.log(c1, c2);
-
         if (c1 != c2)
         {
             wall.classList.remove("wall");
@@ -214,6 +231,6 @@ async function GenerateMaze() {
             }
         }
 
-        await sleep(10);
+        await sleep(0);
     }
 }

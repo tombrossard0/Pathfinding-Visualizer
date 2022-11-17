@@ -63,12 +63,11 @@ header {
 }
   
 .white {
-  background-color: rgb(255, 255, 255);
-  background-color: var(--num);
+  background-color: white;
 }
 
 .gray {
-  background-color: var(--num);
+  background-color: rgb(165, 165, 165);
 }
 
 .start {
