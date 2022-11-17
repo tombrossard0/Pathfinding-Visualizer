@@ -64,10 +64,11 @@ header {
   
 .white {
   background-color: rgb(255, 255, 255);
+  background-color: var(--num);
 }
 
 .gray {
-  background-color: rgb(201, 201, 201);
+  background-color: var(--num);
 }
 
 .start {
@@ -85,5 +86,5 @@ header {
 }
 
 .wall {
-  background-color: rgb(20, 20, 20);
+  background-color: rgb(22, 29, 39);
 }
